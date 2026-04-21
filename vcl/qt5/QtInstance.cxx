@@ -53,6 +53,8 @@
 #include <unx/gendata.hxx>
 #elif defined _WIN32
 #include <win/saldata.hxx>
+#elif defined MACOSX
+#include <osx/saldata.hxx>
 #endif
 
 #include <comphelper/emscriptenthreading.hxx>
@@ -275,6 +277,8 @@ QtInstance::QtInstance()
 #else
     : WindowsInstance(std::make_unique<QtYieldMutex>(), new SalData)
 #endif
+#elif defined MACOSX
+    : MacInstance()
 #else
     : SalGenericInstance(std::make_unique<QtYieldMutex>(), new GenericUnixSalData)
 #endif
@@ -640,6 +644,8 @@ Platform QtInstance::GetPlatform() const
         return Platform::WASM;
     if (sPlatformName == u"windows")
         return Platform::Windows;
+    if (sPlatformName == u"cocoa")
+        return Platform::Mac;
 
     assert(false && "Unsupported qt VCL platform");
     return Platform::Other;

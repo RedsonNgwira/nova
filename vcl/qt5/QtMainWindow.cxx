@@ -24,6 +24,7 @@ QtMainWindow::QtMainWindow(QtFrame& rFrame, Qt::WindowFlags f)
 #ifndef EMSCRIPTEN
     QAccessible::installFactory(QtAccessibleWidget::customFactory);
 #endif
+    setUnifiedTitleAndToolBarOnMac(true);
 }
 
 void QtMainWindow::closeEvent(QCloseEvent* pEvent)
