@@ -18,7 +18,7 @@ dnl cspell:ignoreRegExp / -isystem /
 # several non-alphanumeric characters, those are split off and used only for the
 # ABOUTBOXPRODUCTVERSIONSUFFIX in openoffice.lst. Why that is necessary, no idea.
 
-AC_INIT([LibreOffice],[26.8.0.0.alpha0+],[],[],[http://documentfoundation.org/])
+AC_INIT([Nova],[26.8.0.0.alpha0+],[],[],[http://nova-office.org/])
 
 dnl libnumbertext needs autoconf 2.68, but that can pick up autoconf268 just fine if it is installed
 dnl whereas aclocal (as run by autogen.sh) insists on using autoconf and fails hard
@@ -45,7 +45,7 @@ first_arg_basename()
 CC_BASE=`first_arg_basename "$CC"`
 CXX_BASE=`first_arg_basename "$CXX"`
 
-BUILD_TYPE="LibO"
+BUILD_TYPE="Nova"
 SCPDEFS=""
 GIT_NEEDED_SUBMODULES=""
 LO_PATH= # used by path_munge to construct a PATH variable
