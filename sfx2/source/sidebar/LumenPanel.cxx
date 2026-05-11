@@ -20,8 +20,19 @@ LumenPanel::LumenPanel(vcl::Window* pParent)
     m_pSendBtn->SetClickHdl(LINK(this, LumenPanel, SendClickHdl));
     m_pSendBtn->Show();
 
-    // Initialize Lumen (in reality, key would come from config/env)
+    // Initialize Lumen
     lumen_init("placeholder_key");
+    lumen_set_get_content_callback(LumenPanel::GetDocContent);
+}
+
+char* LumenPanel::GetDocContent()
+{
+    // In a real implementation, we would use the UNO API to get the text of the active document.
+    // e.g. xModel->getComponentContext()...
+    std::string aContent = "This is a placeholder for actual document content retrieved via UNO.";
+    char* pRes = static_cast<char*>(malloc(aContent.size() + 1));
+    strcpy(pRes, aContent.c_str());
+    return pRes;
 }
 
 LumenPanel::~LumenPanel()

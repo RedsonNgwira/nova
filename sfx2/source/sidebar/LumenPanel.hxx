@@ -17,6 +17,8 @@ public:
     virtual void Paint(vcl::RenderContext& rRenderContext, const tools::Rectangle& rRect) override;
     virtual void Resize() override;
 
+    static char* GetDocContent();
+
 private:
     VclPtr<Edit> m_pInput;
     VclPtr<PushButton> m_pSendBtn;
