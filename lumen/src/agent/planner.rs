@@ -1,9 +1,16 @@
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct UnoOp {
+    pub command: String,
+    pub args: serde_json::Value,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct PlanStep {
     pub description: String,
+    pub uno_operations: Vec<UnoOp>,
     pub can_fail_safely: bool,
 }
 
@@ -25,7 +32,6 @@ pub struct ActionPlan {
 }
 
 pub struct Planner {
-    // Planner state
 }
 
 impl Planner {
@@ -34,17 +40,13 @@ impl Planner {
     }
 
     pub fn create_plan(&self, intent: &str, _context: &super::context::DocumentContext) -> ActionPlan {
-        // Mock plan creation for now
+        // In a full implementation, this would be an AI call to generate the steps.
+        // For Phase 3, we define the structure that the AI will fill.
         ActionPlan {
             id: Uuid::new_v4(),
             user_intent: intent.to_string(),
-            interpreted_goal: format!("Execute: {}", intent),
-            steps: vec![
-                PlanStep {
-                    description: "Initial analysis".to_string(),
-                    can_fail_safely: false,
-                }
-            ],
+            interpreted_goal: intent.to_string(),
+            steps: vec![], // To be filled by AI reasoning
             estimated_impact: ImpactLevel::Minor,
             reversible: true,
         }
