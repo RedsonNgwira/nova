@@ -1,1 +1,1 @@
-pub mod router;\npub mod cerebras;\n
+pub mod gemini;\npub mod router;\npub mod cerebras;\n
